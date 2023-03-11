@@ -1,0 +1,163 @@
+{% extends "base.html" %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Meme Generator</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../static/assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+  </head>
+  <body style="background-color: grey">
+    <div id="myaccount" class="myaccount">
+      <div class="container">
+        <div class="row pt-10">
+          <div class="col-12 text-center">
+            <h2><b>Meme Generator</b></h2>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card">
+              <div
+                class="card-body"
+                style="
+                  height: 300px;
+                  width: 100%;
+                  background-color: white;
+                  border-radius: 10px;
+                  overflow: hidden;
+                "
+              >
+                <img id="blah" src="#" width="100%" height="100%" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div
+                class="card-body"
+                style="
+                  height: 300px;
+                  width: 100%;
+                  background-color: white;
+                  border-radius: 10px;
+                  overflow: hidden;
+                  padding: 20px 0;
+                "
+              >
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <br />
+                    <form
+                      action="/myaccount"
+                      method="post"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="mb-3 upload_file_main">
+                        <label for="myFile" class="form-label"
+                          >Upload File</label
+                        >
+                        <input
+                          class="form-control p-0"
+                          type="file"
+                          id="myFile"
+                          name="myFile"
+                          style="opacity: 0; height: 0"
+                          onchange="readURL(this);"
+                        />
+                        <div class="input-group mb-3">
+                          <input
+                            type="text"
+                            id="myFile"
+                            name="myFile"
+                            class="form-control"
+                            placeholder="Upload file here..."
+                            style="caret-color: transparent"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                          Save Image
+                        </button>
+                      </div>
+                    </form>
+
+                    <form
+                      action="/addtexttoimage/Climate_Change.png"
+                      method="post"
+                      class="form_text_field"
+                    >
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="in"
+                          name="uppertext"
+                          placeholder="Enter the Upper Text"
+                        />
+                      </div>
+                      <button type="submit" id="bt" class="btn btn-success">
+                        Apply Text
+                      </button>
+                    </form>
+                    <br />
+
+                    <div class="col-12 text-start">
+                      <a
+                        href="/savememe/{{filename}}"
+                        class="btn btn-success save_meme_btn"
+                        >Save Meme</a
+                      >
+                      <a href="/myaccount" class="btn btn-danger refresh_btn"
+                        >Refresh</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $("#text_input_span_id").click(function () {
+        $("#file_input_id").trigger("click");
+      });
+      $("#text_input_id").click(function () {
+        $("#file_input_id").trigger("click");
+      });
+      $("#file_input_id").change(function () {
+        $("#text_input_id").val(this.value.replace(/C:\\fakepath\\/i, ""));
+      });
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          console.log(input.files[0]["name"]);
+          filename = input.files[0]["name"];
+          reader.onload = function (e) {
+            $("#blah").attr("src", e.target.result);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
+  </body>
+</html>
+
+{% endblock %}

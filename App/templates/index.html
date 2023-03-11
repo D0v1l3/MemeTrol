@@ -1,0 +1,136 @@
+{% extends "base.html" %} {% block content %}
+
+<div id="myaccount" class="myaccount">
+  <div class="container">
+    <div class="row pt-10">
+      <div class="col-12 text-center">
+        <h2><b>Meme Generator</b></h2>
+      </div>
+      <div class="upload_img">
+        <div class="card">
+          <div
+            class="card-body"
+            style="
+              height: 400px;
+              width: 100%;
+              background-color: white;
+              border-radius: 10px;
+              overflow: hidden;
+            "
+          >
+            <img
+              id="card-b"
+              src="{{url_for('static', filename=filename)}}"
+              width="100%"
+              height="100%"
+            />
+          </div>
+        </div>
+      </div>
+      <br /><br /><br />
+      <div class="upload_details">
+        <div class="card">
+          <div
+            class="card-body"
+            style="
+              height: 400px;
+              width: 100%;
+              border-radius: 10px;
+              overflow: hidden;
+              padding: 20px 0;
+            "
+          >
+            <div class="row">
+              <div class="col-md-12 upload_form_main">
+                <br />
+                <form
+                  action="/myaccount"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <div class="mb-3 upload_file_main">
+                    <label for="myFile_input" class="form-label"
+                      >Upload File</label
+                    >
+                    <input
+                      class="form-control p-0"
+                      type="file"
+                      id="myFile_input"
+                      name="myFile"
+                      style="opacity: 0; height: 0"
+                      onchange="readURL(this);"
+                    />
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        id="myFile"
+                        name="myFile"
+                        class="form-control"
+                        placeholder="Upload file here..."
+                        style="caret-color: transparent"
+                        autocomplete="off"
+                      />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-success">
+                    Save Image
+                  </button>
+                </form>
+                <br />
+                <hr />
+                <br />
+
+                <form
+                  action="/addtexttoimage/{{filename}}"
+                  method="post"
+                  class="form_text_field"
+                >
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="in"
+                      name="uppertext"
+                      placeholder="Enter the Upper Text"
+                    />
+                  </div>
+                  <button type="submit" id="bt" class="btn btn-success">
+                    Apply Text
+                  </button>
+                </form>
+                <br />
+                <form>
+                  <a
+                    href="/savememe/{{filename}}"
+                    class="btn btn-success save_meme_btn"
+                    >Save Meme</a
+                  >
+                  <a href="/myaccount" class="btn btn-danger refresh_btn"
+                    >Refresh</a
+                  >
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+  $("#text_input_span_id").click(function () {
+    $("#file_input_id").trigger("click");
+  });
+
+  $("#myFile").click(function () {
+    $("#myFile_input").trigger("click");
+  });
+
+  $("#myFile_input").change(function () {
+    $("#myFile").val(this.value.replace(/C:\\fakepath\\/i, ""));
+  });
+</script>
+
+{% endblock %}

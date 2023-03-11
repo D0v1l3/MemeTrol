@@ -1,0 +1,15 @@
+<section id="hero">
+    <div class="hero-container">
+      <h3>Welcome to <strong>MemeTrol</strong></h3>
+      <h1>Where The Darkest Corners of the internet come to laugh</h1>
+      <h2>Simply upload the image and MemeTrol does the meme</h2>
+
+            {% if current_user.is_authenticated %}
+            <a href="/tmeme" class="btn-get-started scrollto">Meme Gallery</a>
+            {% else %}
+
+            <a href="/signup" class="btn-get-started scrollto">Get Started</a>
+            {% endif %}
+      
+    </div>
+  </section>

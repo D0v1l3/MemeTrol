@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Meme Gfghfghenerator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+</head>
+<body style="background-color:grey;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/myaccount">Mefgghfghgm1111es Generator</a>
+    </div>
+    <ul class="nav navbar-nav">
+        {% if not current_user %}
+          <li><a href="/signup">Signup</a></li>
+          <li><a href="/login">Login</a></li>
+        {% endif %}
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+			<h2><b>My Meme's</b></h2>
+            {% for i in record %}
+                <div class="card">
+                  <div class="card-body" style="height:250px;width:90%;background-color:white;">
+                      <img  id="card-b" src="{{url_for('static', filename=i.name)}}" width="100%" height="100%">
+                  </div>
+                </div><br>
+            <a href="/delete/{{i.id}}" class="btn btn-danger">Danger</a><br>
+            {% endfor %}
+		</div>
+		<div class="col-md-2">
+		</div>
+
+	</div>
+</div>
+
+
+
+
+
+</body>
+</html>

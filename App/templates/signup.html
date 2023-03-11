@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="login" class="login">
+<div class="container">
+	<div class="row h-100 align-items-center justify-content-center">
+		<div class="col-md-6 login_details text-center">
+				<form method="POST" action="/signup" class="login100-form validate-form">
+						{{ form.csrf_token }}
+
+					    {% for message in get_flashed_messages() %}
+						  <div class="alert alert-warning">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							{{ message }}
+						  </div>
+						{% endfor %}
+
+						<br>
+
+							<h3><b> Welcome to Registration</b></h3>
+
+
+							<fieldset class="wrap-input100 text-start">
+								{{ form.name.label }}
+								{{ form.name(class="form-control", placeholder="  Enter Name ") }}
+								{% if form.name.errors %}
+								  <ul class="errors">
+									{% for error in form.name.errors %}
+									  <li>{{ error }}</li>{% endfor %}
+								  </ul>
+								{% endif %}
+
+							</fieldset><br>
+
+							<fieldset class="wrap-input100 text-start">
+								{{ form.email.label }}
+								{{ form.email(class="form-control", placeholder="  Enter Email - Username") }}
+								{% if form.email.errors %}
+								  <ul class="errors">
+									{% for error in form.email.errors %}
+									  <li>{{ error }}</li>{% endfor %}
+								  </ul>
+								{% endif %}
+
+							</fieldset>
+
+							<br>
+
+							<fieldset class="wrap-input100 text-start">
+								{{ form.password.label }}
+								{{ form.password(class="form-control", placeholder="  Enter Password") }}
+								{% if form.password.errors %}
+								  <ul class="errors">
+									{% for error in form.password.errors %}
+									  <li>{{ error }}</li>{% endfor %}
+								  </ul>
+								{% endif %}
+							  </fieldset>
+
+
+
+												<br>
+
+												<fieldset class="wrap-input100 text-start">
+								{{ form.confirm.label }}
+								{{ form.confirm(class="form-control", placeholder="  Confirm Password") }}
+								{% if form.confirm.errors %}
+								  <ul class="errors">
+									{% for error in form.confirm.errors %}
+									  <li>{{ error }}</li>{% endfor %}
+								  </ul>
+								{% endif %}
+							  </fieldset>
+
+
+
+						<br>
+						<div class="container-login100-form-btn">
+							{{ form.submit(class="form-control") }}
+						</div>
+
+						<div class="text-center p-t-46 p-b-20 signu_link">
+							<span class="txt2">
+								<a href="/login">or login using</a>
+							</span>
+						</div>
+
+				</form>
+					</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}

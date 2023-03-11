@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="login" class="login">
+<div class="container">
+	<div class="row h-100 align-items-center justify-content-center">
+		<div class="col-md-6 login_details text-center">
+			<form method="POST" action="/login" class="login100-form validate-form">
+						{{ form.csrf_token }}
+
+					    {% for message in get_flashed_messages() %}
+						  <div class="alert alert-warning">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							{{ message }}
+						  </div>
+						{% endfor %}
+						<br>
+
+				<h3><b>Welcome to Login</b></h3>
+
+
+
+
+
+							<fieldset class="wrap-input100 text-start">
+								{{ form.email.label }}
+								{{ form.email(class="form-control", placeholder="  Enter Email - Username") }}
+								{% if form.email.errors %}
+								  <ul class="errors">
+									{% for error in form.email.errors %}
+									  <li>{{ error }}</li>{% endfor %}
+								  </ul>
+								{% endif %}
+
+							</fieldset>
+
+							<br>
+
+							  <fieldset class="wrap-input100 text-start">
+								{{ form.password.label }}
+								{{ form.password(class="form-control", placeholder="  Enter Password") }}
+								{% if form.email.errors %}
+								  <ul class="errors">
+									{% for error in form.password.errors %}
+									  <li>{{ error }}</li>{% endfor %}
+								  </ul>
+								{% endif %}
+							  </fieldset>
+
+
+							  
+							  <div class="flex-sb-m w-full p-t-3 p-b-32 forgot_password text-start">
+								  
+								  
+								  <div>
+									  <a href="#" class="txt1">
+										  Forgot Password?
+										</a>
+									</div>
+								</div>
+								<br>
+
+
+						<div class="container-login100-form-btn">
+							{{ form.submit(class="form-control") }}
+						</div>
+
+						<div class="text-center p-t-46 p-b-20 signu_link">
+							<span class="txt2">
+								<a href="/signup">or sign up using</a>
+							</span>
+						</div>
+
+
+				</form>
+		</div>
+	</div>
+</div>
+</div>
+
+
+
+
+{% endblock %}

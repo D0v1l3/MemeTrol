@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Meme Generator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+</head>
+<body style="background-color:grey;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/myaccount">Memes Generator</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/mymemes">My Memes</a></li>
+		{% if not current_user %}
+			  <li><a href="/signup">Signup</a></li>
+			  <li><a href="/login">Login</a></li>
+		{% endif %}
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-6">
+			<div class="card">
+				<h2><b>Meme Generator</b></h2>
+			  <div class="card-body" style="height:350px;width:90%;background-color:white;">
+					<img  id="card-b" src="{{url_for('static', filename=filename)}}" width="100%" height="100%" >
+			  </div>
+			</div>
+		</div><br><br><br>
+		<div class="col-md-6">
+			<div class="card">
+			  <div class="card-body"  style="height:350px;width:90%;background-color:white;">
+				  <div class="row">
+					  <div class="col-md-2"></div>
+					  <div class="col-md-8">
+						      <br>
+						      <form action="/myaccount" method="post" enctype="multipart/form-data">
+								  <input type="file" id="myFile" name="myFile"><br>
+								  <button type="submit" class="btn btn-primary">Save Image</button>
+							  </form>
+							  <br>
+
+						          <form action="/addtexttoimage/{{filename}}" method="post">
+									  <div class="form-group">
+										<input type="text"  class="form-control" id="in" name="uppertext" placeholder="Enter the Upper Text" >
+									  </div>
+									  <button type="submit" id="bt" class="btn btn-success">Apply Text</button>
+								  </form><br>
+
+						  <a href="/savememe/{{filename}}"  class="btn btn-primary">Save Meme</a>
+						  <a href="/myaccount"  class="btn btn-danger">Refresh</a>
+					  </div>
+					  <div class="col-md-2"></div>
+				  </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+</body>
+
+
+</html>
